@@ -366,6 +366,13 @@
             if (Object.keys(errors).length) { showErrors(errors); return; }
             showErrors({});
 
+            if ('demo' in form.dataset) {
+                fields.hidden = true;
+                success.hidden = false;
+                form.reset();
+                return;
+            }
+
             form.elements.ts.value = String(pageLoadedAt);
             form.elements.utm.value = getUtm();
 

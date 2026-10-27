@@ -8,7 +8,7 @@
     <title>@yield('title', $site['seo']['title'])</title>
     <meta name="description" content="@yield('description', $site['seo']['description'])">
     <meta name="keywords" content="{{ $site['seo']['keywords'] }}">
-    <meta name="robots" content="@yield('robots', app()->isProduction() ? 'index, follow, max-image-preview:large' : 'noindex, nofollow')">
+    <meta name="robots" content="@yield('robots', app()->isProduction() && empty($site['static_export']) ? 'index, follow, max-image-preview:large' : 'noindex, nofollow')">
     <link rel="canonical" href="@yield('canonical', url('/'))">
     <meta name="format-detection" content="telephone=yes">
     <meta name="theme-color" content="#000000">
@@ -49,7 +49,7 @@
 
     <script src="{{ asset('js/app.js') }}?v={{ filemtime(public_path('js/app.js')) }}" defer></script>
 
-    @if ($site['metrika_id'] && app()->isProduction())
+    @if ($site['metrika_id'] && app()->isProduction() && empty($site['static_export']))
         <script>
             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}

@@ -1,13 +1,17 @@
 @php($p = $prefix)
 @php($ok = session('lead_success') && session('lead_form') === $p)
 @php($err = $errors->any() && old('form_id') === $p)
-<form class="lead-form {{ $class ?? '' }}" method="post" action="{{ route('lead.store') }}" enctype="multipart/form-data" novalidate data-lead-form>
+<form class="lead-form {{ $class ?? '' }}" method="post" action="{{ route('lead.store') }}" enctype="multipart/form-data" novalidate data-lead-form @if (! empty($site['static_export'])) data-demo @endif>
     @csrf
     <input type="hidden" name="form_id" value="{{ $p }}">
 
     <div class="lead-form__success" data-success @unless ($ok) hidden @endunless role="status">
         <strong>Заявка принята!</strong>
-        <span>Перезвоним в ближайшее рабочее время ({{ $site['hours_short'] }}).</span>
+        @if (! empty($site['static_export']))
+            <span>Это демо-версия: на рабочем сайте заявка сразу придёт в Telegram.</span>
+        @else
+            <span>Перезвоним в ближайшее рабочее время ({{ $site['hours_short'] }}).</span>
+        @endif
     </div>
 
     <div class="lead-form__fields" data-fields @if ($ok) hidden @endif>
