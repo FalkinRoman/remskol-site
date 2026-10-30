@@ -1,15 +1,15 @@
 @if (! empty($image))
     @push('preload')
-        <link rel="preload" as="image" href="{{ asset('images/'.$image.'-m.webp') }}" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
-        <link rel="preload" as="image" href="{{ asset('images/'.$image.'.webp') }}" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
+        <link rel="preload" as="image" href="{{ img_asset('images/'.$image.'-m.webp') }}" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
+        <link rel="preload" as="image" href="{{ img_asset('images/'.$image.'.webp') }}" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
     @endpush
 @endif
 <section class="page-hero {{ empty($image) ? 'page-hero--plain' : '' }}">
     @if (! empty($image))
         <picture class="page-hero__bg" aria-hidden="true">
-            <source media="(max-width: 767px)" srcset="{{ asset('images/'.$image.'-m.webp') }}" type="image/webp">
-            <source srcset="{{ asset('images/'.$image.'.webp') }}" type="image/webp">
-            <img src="{{ asset('images/'.$image.'.jpg') }}" alt="" width="1600" height="640" fetchpriority="high" decoding="async">
+            <source media="(max-width: 767px)" srcset="{{ img_asset('images/'.$image.'-m.webp') }}" type="image/webp">
+            <source srcset="{{ img_asset('images/'.$image.'.webp') }}" type="image/webp">
+            <img src="{{ img_asset('images/'.$image.'.jpg') }}" alt="" width="1600" height="640" fetchpriority="high" decoding="async">
         </picture>
     @endif
     <div class="container page-hero__inner">

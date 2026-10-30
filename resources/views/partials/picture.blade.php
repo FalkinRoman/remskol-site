@@ -1,6 +1,6 @@
 <picture>
-    <source srcset="{{ asset('images/'.$name.'.webp') }}" type="image/webp">
-    <img src="{{ asset('images/'.$name.'.jpg') }}"
+    <source srcset="{{ img_asset('images/'.$name.'.webp') }}" type="image/webp">
+    <img src="{{ img_asset('images/'.$name.'.jpg') }}"
          alt="{{ $alt }}"
          width="{{ $width }}" height="{{ $height }}"
          class="{{ $class ?? '' }}"

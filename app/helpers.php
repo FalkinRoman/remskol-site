@@ -24,3 +24,13 @@ if (! function_exists('nb')) {
         return $text;
     }
 }
+
+if (! function_exists('img_asset')) {
+    function img_asset(string $path): string
+    {
+        $full = public_path($path);
+        $url = asset($path);
+
+        return is_file($full) ? $url.'?v='.filemtime($full) : $url;
+    }
+}

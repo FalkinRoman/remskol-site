@@ -1,8 +1,8 @@
 @extends('layouts.site')
 
 @push('preload')
-    <link rel="preload" as="image" href="{{ asset('images/slide-1-m.webp') }}" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
-    <link rel="preload" as="image" href="{{ asset('images/slide-1.webp') }}" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="{{ img_asset('images/slide-1-m.webp') }}" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
+    <link rel="preload" as="image" href="{{ img_asset('images/slide-1.webp') }}" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
 @endpush
 
 @include('partials.schema-org')
@@ -14,9 +14,9 @@
             @foreach ($site['slides'] as $i => $slide)
                 <div class="slide {{ $i === 0 ? 'is-active' : '' }}" role="group" aria-roledescription="slide" aria-label="{{ $i + 1 }} из {{ count($site['slides']) }}" @if ($i) aria-hidden="true" @endif data-slide>
                     <picture class="slide__media">
-                        <source media="(max-width: 767px)" srcset="{{ asset('images/'.$slide['image'].'-m.webp') }}" type="image/webp">
-                        <source srcset="{{ asset('images/'.$slide['image'].'.webp') }}" type="image/webp">
-                        <img src="{{ asset('images/'.$slide['image'].'.jpg') }}" alt="{{ $slide['alt'] }}"
+                        <source media="(max-width: 767px)" srcset="{{ img_asset('images/'.$slide['image'].'-m.webp') }}" type="image/webp">
+                        <source srcset="{{ img_asset('images/'.$slide['image'].'.webp') }}" type="image/webp">
+                        <img src="{{ img_asset('images/'.$slide['image'].'.jpg') }}" alt="{{ $slide['alt'] }}"
                              width="{{ $slide['size'][0] }}" height="{{ $slide['size'][1] }}"
                              @if ($i === 0) fetchpriority="high" @else loading="lazy" fetchpriority="low" @endif decoding="async">
                     </picture>
